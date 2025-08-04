@@ -18,7 +18,7 @@ public class Book {
 
     @Override
 
-    public boolean equals(Object o){
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
@@ -49,13 +49,62 @@ public class Book {
 
 }
 
+class Box<T> {
+
+    private T item;
+
+    public Box(T item) {
+        this.item = item;
+    }
+
+    public Box() {
+
+    }
+
+    public T getItem() {
+        return item;
+    }
+
+    public void setItem(T item) {
+        this.item = item;
+    }
+
+}
+
+class Pair<K, V> {
+
+    private K key;
+    private V value;
+
+    public Pair(K key, V value) {
+        this.key = key;
+        this.value = value;
+    }
+
+    public K getKey() {
+        return key;
+    }
+
+    public V getValue() {
+        return value;
+    }
+
+    @Override
+    public String toString() {
+        return "Pair{" +
+                "key=" + key +
+                ", value=" + value +
+                '}';
+    }
+}
+
 
 class LibraryDemo {
 
     public static void main(String[] args) {
-        Book b1 = new Book ("Clean Code", "Robert C. Martin", 464, "978-0132350884");
-        Book b2 = new Book ("Clean Code", "Robert C. Martin", 464, "978-0132350884");
-        Book b3 = new Book ("Effective Java", "Joshua Bloch", 416, "978-0134686097");
+        Book b1 = new Book("Clean Code", "Robert C. Martin", 464, "978-0132350884");
+        Book b2 = new Book("Clean Code", "Robert C. Martin", 464, "978-0132350884");
+        Book b3 = new Book("Effective Java", "Joshua Bloch", 416, "978-0134686097");
 
 
         System.out.println("b1 equals b2: " + b1.equals(b2)); //true
@@ -73,5 +122,21 @@ class LibraryDemo {
         System.out.println(b2.toString());
         System.out.println(b3.toString());
 
+
+        Box<Book> bookBox = new Box<>();
+        bookBox.setItem(b1);
+
+        System.out.println("--------Box Example--------");
+        System.out.println("Book in box: " + bookBox.getItem());
+
+        System.out.println("--------Pair Examples--------");
+        Pair<String, Integer> bookScore = new Pair<>("Clean Code", 9);
+        System.out.println("Book Score: " + bookScore.getValue());
+        Pair<String, Book> favouriteBook = new Pair<>("My Favourite ", b1);
+        System.out.println(favouriteBook.getKey() + favouriteBook.getValue());
+
+
     }
+
+
 }
